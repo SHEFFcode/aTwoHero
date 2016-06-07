@@ -20,15 +20,47 @@
 
 <div class="container main-content" ng-controller="PersonsController">
 	<div class="row">
+		<div class="col-xs-12">
+			<form class="form-inline well well-sm">
+				<span class="glyphicon glyphicon-search"></span>
+				<div class="form-group">
+					<input type="text" id="name" placeholder="Search Name ..." class="form-control"
+							ng-model="search.$">
+				</div>
+				<!--<div class="form-group">-->
+					<!--<input type="text" id="email" placeholder="Search Email ..." class="form-control"-->
+							<!--ng-model="search.email">-->
+				<!--</div>-->
+				<span class="glyphicon glyphicon-sort-by-attributes"></span>
+				<div class="form-group">
+					<select name="filter" id="filder" class="form-control" ng-model="order">
+						<option value="name">Name (ASC)</option>
+						<option value="-name">Name (DSC)</option>
+						<option value="email">Email (ASC)</option>
+						<option value="-email">Email (DSC)</option>
+					</select>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-xs-8">
 			<table class="table table-bordered">
 				<tr>
 					<th>#</th>
-					<th>Name</th>
-					<th>Email</th>
+					<th>
+						Name
+						<span ng-click="order = 'name'" class="glyphicon glyphicon-menu-up"></span>
+						<span ng-click="order = '-name'" class="glyphicon glyphicon-menu-down"></span>
+					</th>
+					<th>
+						Email
+						<span ng-click="order = 'email'" class="glyphicon glyphicon-menu-up"></span>
+						<span ng-click="order = '-email'" class="glyphicon glyphicon-menu-down"></span>
+					</th>
 					<th>Birthday</th>
 				</tr>
-				<tr ng-repeat="person in persons"
+				<tr ng-repeat="person in persons | filter: search | orderBy: order"
 					ng-style="{
 					'background-color': $index === selectedIndex? '#ccc' : ''
 					}"
@@ -62,6 +94,7 @@
 					</dl>
 				</div>
 			</div>
+			<pre>{{ search | json }}</pre>
 		</div>
 	</div>
 </div >

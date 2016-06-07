@@ -1,6 +1,8 @@
 var app = angular.module('codecraft', []);
 
 app.controller('PersonsController', ['$scope', function ($scope) {
+  $scope.search = {};
+  $scope.order = 'name';
   $scope.selectedIndex  = null;
   $scope.selectedPerson = null;
   $scope.selectPerson = function (person, index) {
