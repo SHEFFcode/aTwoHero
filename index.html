@@ -1,0 +1,75 @@
+<!DOCTYPE html >
+<html lang="en" ng-app="codecraft" >
+<head >
+	<title >Lists Of Things</title >
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" >
+	<link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" >
+	<link href="main.css" rel="stylesheet" >
+</head >
+
+<body >
+<nav class="navbar navbar-inverse navbar-fixed-top" >
+	<div class="container" >
+		<div class="navbar-header" >
+			<a class="navbar-brand"
+			   href="/" >Lists Of Things
+			</a >
+		</div >
+	</div >
+</nav >
+
+<div class="container main-content" ng-controller="PersonsController">
+	<div class="row">
+		<div class="col-xs-8">
+			<table class="table table-bordered">
+				<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Birthday</th>
+				</tr>
+				<tr ng-repeat="person in persons"
+					ng-style="{
+					'background-color': $index === selectedIndex? '#ccc' : ''
+					}"
+					ng-click="selectPerson(person, $index)">
+					<td ng-cloak="">{{ $index }}</td>
+					<td ng-cloak="">{{ person.name }}</td>
+					<td ng-cloak="">{{ person.email }}</td>
+					<td ng-cloak="">{{ person.birthdate | date: 'longDate' }}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-xs-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">Details</div>
+				<div class="panel-body">
+					<dl>
+						<dt>Name</dt>
+						<dd ng-cloak="">{{ selectedPerson.name }}</dd>
+						<dt>Email</dt>
+						<dd ng-cloak="">{{ selectedPerson.email }}</dd>
+						<dt>Birthdate</dt>
+						<dd ng-cloak="">{{ selectedPerson.birthdate | date: 'longDate' }}</dd>
+						<dt>Phone Number</dt>
+						<dd ng-cloak="">{{ selectedPerson.phonenumber }}</dd>
+						<dt>Address</dt>
+						<dd ng-cloak="">{{ selectedPerson.address }}</dd>
+						<dt>City</dt>
+						<dd ng-cloak="">{{ selectedPerson.city }}</dd>
+						<dt>Country</dt>
+						<dd ng-cloak="">{{ selectedPerson.country }}</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+</div >
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.js" ></script >
+<script src="main.js" ></script >
+<script src="app.js"></script>
+</body >
+</html >
